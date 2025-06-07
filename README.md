@@ -8,4 +8,4 @@
 فقط با یک خط دستور در سرور خود اجرا کنید:
 
 ```bash
-bash <(curl -s https://raw.githubusercontent.com/YOUR_USERNAME/server-diagnostics/main/server_diag.sh)
+bash <(curl -s https://raw.githubusercontent.com/hosseinmf/server-diagnostics/main/server_diag.sh)
