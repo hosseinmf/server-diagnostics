@@ -118,6 +118,25 @@ echo -e "\n-- Kernel Ring Buffer (dmesg -T | tail):" | tee -a $LOGFILE
 dmesg -T | tail -n 20 | tee -a $LOGFILE
 
 ############################################################
+############################################################
+## 11. Network Connections Analysis
+echo -e "\n🔗 [11] Network Connections Analysis" | tee -a $LOGFILE
+
+echo -e "\n-- Total Connections Count:" | tee -a $LOGFILE
+netstat -an | wc -l | tee -a $LOGFILE
+
+echo -e "\n-- Total Connections on Port 80:" | tee -a $LOGFILE
+netstat -an | grep ':80' | wc -l | tee -a $LOGFILE
+
+echo -e "\n-- Connections per IP (for DDoS detection):" | tee -a $LOGFILE
+netstat -ntu | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -n | tee -a $LOGFILE
+
+echo -e "\n-- Connections per IP with Port Info:" | tee -a $LOGFILE
+netstat -na | awk '{print $5}' | cut -d "." -f1,2,3,4 | sort | uniq -c | sort -nr | tee -a $LOGFILE
+
+echo -e "\n-- Connections per Port:" | tee -a $LOGFILE
+netstat -tuna | awk -F':| +' 'NR>2{print $5}' | cut -d: -f2 | sort | uniq -c | sort -n | tee -a $LOGFILE
+
 echo -e "\n✅ Diagnostics completed. Log file: $LOGFILE"
 
 echo -e "\n📄 Log file content:\n"
