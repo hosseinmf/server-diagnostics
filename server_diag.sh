@@ -55,7 +55,7 @@ rm -f /usr/local/apache/htdocs/info.php
 echo -e "\n🌐 [6] Checking Network Connectivity & Download Speed" | tee -a $LOGFILE
 ping -c 4 8.8.8.8 | tee -a $LOGFILE
 
-curl -s https://speed.hetzner.de/100MB.bin -o /dev/null -w "Download speed: %{speed_download} bytes/sec\n" | tee -a $LOGFILE
+curl -s https://test.zagrio.net/100M.zip -o /dev/null -w "Download speed: %{speed_download} bytes/sec\n" | tee -a $LOGFILE
 
 ############################################################
 ## 7. Firewall Status
